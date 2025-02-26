@@ -1,6 +1,8 @@
 return {
+{
     "williamboman/mason.nvim",
-    config = function()
+    lazy=false,
+    init = function()
 	 require("mason").setup({
 		ui = {
 			icons = {
@@ -11,4 +13,18 @@ return {
 		}
 	})
     end,
+},
+{
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    lazy=false,
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+	    'williamboman/mason.nvim',
+    },
+    init = function()
+	require("mason-lspconfig").setup()
+    end,
+
+}
 }
