@@ -25,6 +25,5 @@ return {
     init = function()
 	require("mason-lspconfig").setup()
     end,
-
 }
 }
