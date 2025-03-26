@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 alias murder-orphans='pacman -Qtdq | sudo pacman -Rns -'
 
 export PATH="/home/devon/.cargo/bin:/home/devon/rpgm-utils:/home/devon/.local/bin:$PATH"
+export npm_config_prefix="$HOME/.local"
 
 export QSYS_ROOTDIR="/home/devon/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/23.1/quartus/sopc_builder/bin"
 
