@@ -100,7 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias murder-orphans='pacman -Qtdq | sudo pacman -Rns -'
-alias run-mtool='~/Documents/GitHub/linux-tools/run-with-mtool.sh'
 alias lah='ls -lah'
 
 export PATH="/home/devon/.cargo/bin:/home/devon/rpgm-utils:/home/devon/.local/bin:$PATH"
