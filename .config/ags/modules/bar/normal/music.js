@@ -151,11 +151,12 @@ export default () => {
         truncate: 'end',
         maxWidthChars: 1, // Doesn't matter, just needs to be non negative
         setup: (self) => self.hook(Mpris, label => {
-            const mpris = Mpris.getPlayer('');
-            if (mpris)
-                label.label = `${trimTrackTitle(mpris.trackTitle)} • ${mpris.trackArtists.join(', ')}`;
-            else
-                label.label = getString('No media');
+            let selectedLabel = getString('No media');
+
+            for (const mpris of Mpris.players) 
+                if (mpris && mpris.playBackStatus != "Stopped")
+                    selectedLabel = `${trimTrackTitle(mpris.trackTitle)} • ${mpris.trackArtists.join(', ')}`;
+            label.label = selectedLabel;
         }),
     })
     const musicStuff = Box({
