@@ -1,0 +1,18 @@
+diff --git a/lua/mason-lspconfig/features/automatic_enable.lua b/lua/mason-lspconfig/features/automatic_enable.lua
+index 79ab99a..f79d4df 100644
+--- a/lua/mason-lspconfig/features/automatic_enable.lua
++++ b/lua/mason-lspconfig/features/automatic_enable.lua
+@@ -1,3 +1,4 @@
++local coq = require "coq"
+ local _ = require "mason-core.functional"
+ local mappings = require "mason-lspconfig.mappings"
+ local registry = require "mason-registry"
+@@ -41,7 +42,7 @@ local function enable_server(mason_pkg)
+     -- user doesn't want. Instead we only override LSP configurations for servers that are installed via Mason.
+     local ok, config = pcall(require, ("mason-lspconfig.lsp.%s"):format(lspconfig_name))
+     if ok then
+-        vim.lsp.config(lspconfig_name, config)
++        vim.lsp.config(lspconfig_name, coq.lsp_ensure_capabilities(config))
+     end
+ 
+     vim.lsp.enable(lspconfig_name)
