@@ -17,6 +17,27 @@ vim.g.clipboard = {
   cache_enabled = true,
 }
 
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+
+
 vim.keymap.set('i', '<c-space>', function()
   vim.lsp.completion.get()
 end)
+
+-- Colorscheme setup
+vim.cmd("colorscheme tokyonight-night")
+
+-- Treesitter setup
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		local filetype = vim.bo.filetype
+		if filetype and filetype ~= "" then
+			pcall(vim.treesitter.start)
+		end
+	end,
+})
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.bo.indentexpr = "v:lua.vim.treesitter.indentexpr()"
+
