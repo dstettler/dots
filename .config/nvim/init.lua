@@ -19,12 +19,14 @@ vim.g.clipboard = {
 
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "gb", "<c-o>", { noremap = true, silent = true})
 
 local tsB = require('telescope.builtin')
 vim.keymap.set("n", "tg", tsB.live_grep, { silent = true})
 vim.keymap.set("n", "tf", tsB.find_files, { silent = true})
+vim.keymap.set("n", "tb", tsB.buffers, { silent = true})
 
 
 vim.keymap.set('i', '<c-space>', function()
@@ -47,3 +49,4 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.bo.indentexpr = "v:lua.vim.treesitter.indentexpr()"
 
+vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true } })
